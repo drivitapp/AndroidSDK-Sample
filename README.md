@@ -52,9 +52,9 @@ With these three steps, your app should be already compiling the Drivit SDK. Now
 
 ## Using the SDK
 ### 1. Add the API Key to the manifest
-Add the following piece of code to your app's manifest 
+Add the following piece of code to your app's manifest inside the **application** block
 ```
 <meta-data
-            android:name="com.drivit.API_KEY"
-            android:value="YOUR_API_KEY" />
+     android:name="com.drivit.API_KEY"
+     android:value="YOUR_API_KEY" />
  ```
