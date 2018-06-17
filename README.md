@@ -122,4 +122,4 @@ And that is it! Safe trips!
 
 **The Drivit Team**
 
-P.S. You can see the complete reference documentation [here](https://drivitapp.github.io/AndroidSDK/)
+<br/><br/>P.S. You can see the complete reference documentation [here](https://drivitapp.github.io/AndroidSDK/)
