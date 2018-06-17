@@ -9,7 +9,7 @@ To use the Drivit SDK you need an API Key. Contact us at support@drivit.com to g
 ### 1. Add the following dependency to your module build.gradle file
 ```
 dependencies {
-    implementation 'com.github.drivitapp:AndroidSDK:1.0.0'
+    implementation 'com.github.drivitapp:AndroidSDK:2.0.4'
 }
 
 ```
@@ -25,11 +25,11 @@ allprojects {
 The SDK makes use of features enabled by Java 8. Just add the **compileOptions** option as in the example bellow.
 ```
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.drivit.androidsdk_sample"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
