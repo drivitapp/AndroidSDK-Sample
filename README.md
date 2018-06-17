@@ -6,14 +6,14 @@ This is a sample project to demonstrate the Drivit Android SDK integration. This
 To use the Drivit SDK you need an API Key. Contact us at support@drivit.com to get one. 
 
 ## Setup your Android Project
-### 1. Add the following dependency to your module build.gradle file
+### 1. Add the following dependency to your module-level build.gradle file
 ```
 dependencies {
     implementation 'com.github.drivitapp:AndroidSDK:2.0.4'
 }
 
 ```
-### 2. Add the following repository to your project build.gradle file
+### 2. Add the following repository to your project-level build.gradle file
 ```
 allprojects {
     repositories {
