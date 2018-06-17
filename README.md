@@ -105,6 +105,7 @@ public class MyApplication extends DrivitApplication {
         android:name=".MyApplication"
         ...
 ```
+If you don't set any notifications, the SDK will use the default ones.
 ### 3. Login/signup your user into the SDK
 You have to login the user into the SDK before it starts recording trips. To do so, create an instance of the ```DrivitLoginSignupOperation``` object and provide it with the info of your user
 
@@ -118,3 +119,4 @@ login.doLogin(context, "mail@mail.com", "password", null, new LoginListener() {
 });
 ```
 And that is it! Safe trips!
+**The Drivit Team**
