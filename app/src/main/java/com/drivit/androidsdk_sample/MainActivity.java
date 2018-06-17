@@ -1,6 +1,7 @@
 package com.drivit.androidsdk_sample;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.drivit.core.DrivitLoginSignupOperation;
+import com.drivit.core.DrivitUser;
+import com.drivit.core.utils.LoginListener;
+import com.google.gson.JsonElement;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +31,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                login();
             }
         });
     }
@@ -48,5 +56,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void login() {
+        DrivitLoginSignupOperation login = new DrivitLoginSignupOperation();
+        login.doLogin(MainActivity.this, "email", "password", null, new LoginListener() {
+            @Override
+            public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {
+                Toast.makeText(MainActivity.this, "Login completed: " + codeOk + ", cause: " + cause, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
