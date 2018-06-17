@@ -52,9 +52,69 @@ With these three steps, your app should be already compiling the Drivit SDK. Now
 
 ## Using the SDK
 ### 1. Add the API Key to the manifest
-Add the following piece of code to your app's manifest inside the **application** block
+Add the following piece of code to your app's manifest inside the **<application/>** block
 ```
 <meta-data
      android:name="com.drivit.API_KEY"
      android:value="YOUR_API_KEY" />
  ```
+ ### 2. Extend the DrivitApplication class
+ **DrivitApplication** provides a way for you to define notifications that the Drivit SDK has to show to the user in certain situations, e.g. when recording a trip. Just create your application class as in the example bellow...
+ ```
+public class MyApplication extends DrivitApplication {
+
+    @Override
+    public Notification getSuspectNotification() {
+        return null;
+    }
+
+    @Override
+    public Notification getRecordingNotification(boolean b) {
+        return null;
+    }
+
+    @Override
+    public Notification getProcessingNotification() {
+        return null;
+    }
+
+    @Override
+    public Notification getRecordingNotification_OBD(boolean b, boolean b1) {
+        return null;
+    }
+
+    @Override
+    public Notification getAdquiringLocationNotification_OBD() {
+        return null;
+    }
+
+    @Override
+    public Notification getDetected_ConnectingNotification_OBD() {
+        return null;
+    }
+
+    @Override
+    public BroadcastReceiver getAppReceiver() {
+        return null;
+    }
+}
+ ```
+... and set it in the manifest:
+```
+<application
+        android:name=".MyApplication"
+        ...
+```
+### 3. Login/signup your user into the SDK
+You have to login the user into the SDK before it starts recording trips. To do so, create an instance of the ```DrivitLoginSignupOperation``` object and provide it with the info of your user
+
+```
+DrivitLoginSignupOperation login = new DrivitLoginSignupOperation();
+login.doLogin(context, "mail@mail.com", "password", null, new LoginListener() {
+     @Override
+     public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {
+          Toast.makeText(context, "Login completed: " + codeOk + ", cause: " + cause, Toast.LENGTH_SHORT).show();
+     }
+});
+```
+And that is it! Safe trips!
