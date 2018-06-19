@@ -19,6 +19,18 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="Trip map"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
+        <meta-data
+            android:name="com.google.android.awareness.API_KEY"
+            android:value="YOUR_API_KEY" />
+
         <meta-data
             android:name="com.drivit.API_KEY"
             android:value="YOUR_API_KEY" />
