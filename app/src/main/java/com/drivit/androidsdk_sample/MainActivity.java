@@ -17,7 +17,7 @@ import com.drivit.core.DrivitLoginSignupOperation;
 import com.drivit.core.DrivitUser;
 import com.drivit.core.utils.LoginListener;
 
-/*The main activity of the app*/
+/*The main activity of the application*/
 public class MainActivity extends AppCompatActivity {
 
     @Override
