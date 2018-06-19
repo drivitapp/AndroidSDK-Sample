@@ -58,9 +58,28 @@ Add the following piece of code to your app's manifest inside the **<application
      android:name="com.drivit.API_KEY"
      android:value="YOUR_API_KEY" />
  ```
- ### 2. Extend the DrivitApplication class
- **DrivitApplication** provides a way for you to define notifications that the Drivit SDK has to show to the user in certain situations, e.g. when recording a trip. Just create your application class as in the example bellow...
- ```
+
+### 2. Add relevant Google Maps API Keys
+Drivit uses Google APIs to provide an improved user experience. This sample uses two of them:
+```
+<!--Google API Key. Enables the Maps SDK so that trips can be shown on a map. If you choose
+other maps supplier, you can ignore this key-->
+<meta-data
+    android:name="com.google.android.geo.API_KEY"
+    android:value="YOUR_API_KEY" />
+
+<!--Google Api Key. Enables the Google Awareness API which Drivit uses in its inner workings.
+You can also use the services enabled by this app, more info here: https://developers.google.com/awareness/overview
+You should NOT ignore this key-->
+<meta-data
+    android:name="com.google.android.awareness.API_KEY"
+    android:value="YOUR_API_KEY" />
+```
+
+
+### 3. Extend the DrivitApplication class
+**DrivitApplication** provides a way for you to define notifications that the Drivit SDK has to show to the user in certain situations, e.g. when recording a trip. Just create your application class as in the example bellow...
+```
 public class MyApplication extends DrivitApplication {
 
     @Override
@@ -106,7 +125,7 @@ public class MyApplication extends DrivitApplication {
         ...
 ```
 If you don't set any notifications, the SDK will use the default ones.
-### 3. Login/signup your user into the SDK
+### 4. Login/signup your user into the SDK
 You have to login the user into the SDK before it starts recording trips. To do so, create an instance of the ```DrivitLoginSignupOperation``` object and provide it with the info of your user
 
 ```
