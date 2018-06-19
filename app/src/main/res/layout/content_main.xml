@@ -9,12 +9,17 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/textView_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="TextView" />
+
+
+    <FrameLayout
+        android:id="@+id/sample_content_fragment"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        app:layout_constraintTop_toBottomOf="@+id/textView_version" />
 
 </android.support.constraint.ConstraintLayout>
