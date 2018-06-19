@@ -35,6 +35,7 @@ import java.text.SimpleDateFormat;
  */
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
     private static final String TAG = "TripAdapter";
+    public static final String TRIP_GUID = "trip_guid";
 
     private TripType[] mDataSet;
 
@@ -109,8 +110,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 if (trip.hasAnyLocationPoint()){
-                    MapsActivity.setTrip(trip);
-                    v.getContext().startActivity(new Intent(v.getContext(), MapsActivity.class));
+                    Intent intent = new Intent(v.getContext(), MapsActivity.class);
+                    intent.putExtra(TRIP_GUID, trip.guid);
+                    v.getContext().startActivity(intent);
                 }else{
                     Toast.makeText(v.getContext(), "Trip has no locations", Toast.LENGTH_SHORT).show();
                 }

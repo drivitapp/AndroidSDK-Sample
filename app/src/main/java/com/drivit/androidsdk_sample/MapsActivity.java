@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import com.drivit.core.DrivitUser;
 import com.drivit.core.trips.LocationInfo;
 import com.drivit.core.trips.SnappedPoint;
 import com.drivit.core.trips.TripType;
@@ -21,16 +22,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private static TripType mTrip;
-
-    public static void setTrip(TripType trip){
-        mTrip=trip;
-    }
+    private TripType mTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        String tripGuid = getIntent().getExtras().getString(TripAdapter.TRIP_GUID);
+        mTrip = DrivitUser.getUser(this).getTrip(this, tripGuid);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -52,41 +53,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLngBounds.Builder bounds=new LatLngBounds.Builder();
-        LocationInfo[] locs=mTrip.getLocations();
-        LocationInfo origin=mTrip.getOrigin();
-        LocationInfo destination=mTrip.getDestination();
+        LatLngBounds.Builder bounds = new LatLngBounds.Builder();
+        LocationInfo[] locs = mTrip.getLocations();
+        LocationInfo origin = mTrip.getOrigin();
+        LocationInfo destination = mTrip.getDestination();
 
         new AsyncTask<Void, Void, Void>() {
             protected void onPreExecute() {
                 // Pre Code
             }
+
             protected Void doInBackground(Void... unused) {
                 mTrip.calculateSnappedLocations();
                 return null;
             }
+
             protected void onPostExecute(Void unused) {
-                if (locs!=null){
-                    for (SnappedPoint loc:mTrip.getSnappedPoints()){
-                        includeLocation(loc.coordinates,bounds);
+                if (locs != null) {
+                    for (SnappedPoint loc : mTrip.getSnappedPoints()) {
+                        includeLocation(loc.coordinates, bounds);
                         //includeLocation(loc,bounds);
                     }
                 }
 
-                if (origin!=null)includeLocation(origin.toLatLng(),bounds);
-                if (destination!=null)includeLocation(destination.toLatLng(),bounds);
+                if (origin != null) includeLocation(origin.toLatLng(), bounds);
+                if (destination != null) includeLocation(destination.toLatLng(), bounds);
 
                 //We have to confirm the view is laid out
-                View container=findViewById(R.id.mapContainer);
-                if (container.getHeight()!=0){
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(),50));
-                }else{
-                    ViewTreeObserver obs=container.getViewTreeObserver();
+                View container = findViewById(R.id.mapContainer);
+                if (container.getHeight() != 0) {
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50));
+                } else {
+                    ViewTreeObserver obs = container.getViewTreeObserver();
                     obs.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                         @Override
                         public boolean onPreDraw() {
                             container.getViewTreeObserver().removeOnPreDrawListener(this);
-                            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(),50));
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50));
                             return false;
                         }
                     });
@@ -95,12 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }.execute();
 
 
-
-
-
     }
 
-    private void includeLocation(LatLng loc, LatLngBounds.Builder bounds){
+    private void includeLocation(LatLng loc, LatLngBounds.Builder bounds) {
         bounds.include(loc);
         mMap.addMarker(new MarkerOptions().position(loc));
     }
