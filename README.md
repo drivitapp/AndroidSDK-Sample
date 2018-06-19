@@ -51,7 +51,7 @@ android {
 With these three steps, your app should be already compiling the Drivit SDK. Now let's put it to work
 
 ## Using the SDK
-### 1. Add the API Key to the manifest
+### 1. Add the Drivit API Key to the manifest
 Add the following piece of code to your app's manifest inside the **<application/>** block
 ```
 <meta-data
@@ -118,7 +118,7 @@ login.doLogin(context, "mail@mail.com", "password", null, new LoginListener() {
      }
 });
 ```
-And that is it! Safe trips!
+And that is it! Safe trips
 
 **The Drivit Team**
 
