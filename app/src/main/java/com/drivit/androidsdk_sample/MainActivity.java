@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -109,7 +108,12 @@ public class MainActivity extends DrivitStatusActivity {
                 break;
 
             case R.id.action_simulate:
-                DrivitUtils.simulateTrip(MainActivity.this);
+                if (DrivitUser.isUserLogged(this)) {
+                    DrivitUtils.simulateTrip(MainActivity.this);
+                } else {
+                    Toast.makeText(this, "You have to be logged to simulate trips", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
         }
 
