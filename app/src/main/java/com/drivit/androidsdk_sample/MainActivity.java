@@ -111,7 +111,7 @@ public class MainActivity extends DrivitStatusActivity {
                 if (DrivitUser.isUserLogged(this)) {
                     DrivitUtils.simulateTrip(MainActivity.this);
                 } else {
-                    Toast.makeText(this, "You have to be logged to simulate trips", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "You have to be logged in to simulate trips", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
