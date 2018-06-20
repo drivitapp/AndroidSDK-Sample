@@ -69,7 +69,7 @@ other maps supplier, you can ignore this key-->
     android:value="YOUR_API_KEY" />
 
 <!--Google Api Key. Enables the Google Awareness API which Drivit uses in its inner workings.
-You can also use the services enabled by this app, more info here: https://developers.google.com/awareness/overview
+You can also use the services enabled by this API in your app, more info here: https://developers.google.com/awareness/overview
 You should NOT ignore this key-->
 <meta-data
     android:name="com.google.android.awareness.API_KEY"
