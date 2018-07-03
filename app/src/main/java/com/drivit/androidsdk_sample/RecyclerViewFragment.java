@@ -85,7 +85,8 @@ public class RecyclerViewFragment extends Fragment {
         }
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mAdapter = new TripAdapter(Arrays.stream(mDataset).sorted((a, b)-> Long.compare(b.tsStart,a.tsEnd)).toArray(TripType[]::new));
+        //mAdapter = new TripAdapter(Arrays.stream(mDataset).sorted((a, b)-> Long.compare(b.tsStart,a.tsEnd)).toArray(TripType[]::new));
+        mAdapter=new TripAdapter(mDataset);
         // Set TripAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
