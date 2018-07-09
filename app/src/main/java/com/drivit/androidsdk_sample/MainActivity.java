@@ -150,22 +150,25 @@ public class MainActivity extends DrivitStatusActivity {
     }
 
     private void sendLogs() {
-        DrivitCloud.forceSyncLogs(MainActivity.this, new DrivitCloud.OperationListenerGeneric<Double>() {
-            @Override
-            public void onCompleted() {
-                Toast.makeText(MainActivity.this, "Logs sent successfully", Toast.LENGTH_LONG).show();
-            }
+        DrivitCloud drivitCloud = DrivitCloud.getInstance(MainActivity.this);
+        if (drivitCloud != null) {
+            drivitCloud.forceSyncLogs(new DrivitCloud.OperationListenerGeneric<Double>() {
+                @Override
+                public void onCompleted() {
+                    Toast.makeText(MainActivity.this, "Logs sent successfully", Toast.LENGTH_LONG).show();
+                }
 
-            @Override
-            public void onError(int error) {
-                Toast.makeText(MainActivity.this, "Error while sending logs, cause: " + error, Toast.LENGTH_LONG).show();
-            }
+                @Override
+                public void onError(int error) {
+                    Toast.makeText(MainActivity.this, "Error while sending logs, cause: " + error, Toast.LENGTH_LONG).show();
+                }
 
-            @Override
-            public void onProgress(Double value) {
+                @Override
+                public void onProgress(Double value) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     private void login() {
