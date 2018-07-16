@@ -9,7 +9,7 @@ To use the Drivit SDK you need an API Key. Contact us at support@drivit.com to g
 ### 1. Add the following dependency to your module-level build.gradle file
 ```
 dependencies {
-    implementation 'com.github.drivitapp:AndroidSDK:2.2.0'
+    implementation 'com.github.drivitapp:AndroidSDK:2.3.2'
 }
 
 ```
@@ -141,4 +141,4 @@ And that is it! Safe trips!
 
 **The Drivit Team**
 
-<br/><br/>P.S. You can see the complete reference documentation [here](https://drivitapp.github.io/AndroidSDK/)
+<br/><br/>P.S. You can see the complete reference documentation [here](https://jitpack.io/com/github/drivitapp/AndroidSDK/2.3.2/javadoc/)
