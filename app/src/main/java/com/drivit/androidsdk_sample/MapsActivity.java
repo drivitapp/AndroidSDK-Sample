@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
+import com.drivit.core.DrivitCloud;
 import com.drivit.core.DrivitUser;
 import com.drivit.core.trips.LocationInfo;
 import com.drivit.core.trips.SnappedPoint;
 import com.drivit.core.trips.TripType;
+import com.drivit.core.utils.Constants;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,6 +23,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 /*13*/
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private static final String TAG = "MapsActivity";
 
     private GoogleMap mMap;
     private TripType mTrip;
@@ -53,24 +58,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        if (mTrip.areLocationsAndEventsAvailable()) {
+            new SnapTask().execute();
+        } else {
+            mTrip.downloadLocationsAndEvents(new DrivitCloud.OperationListener() {
+                @Override
+                public void onCompleted(boolean success, int errorCause) {
+                    if (success) {
+                        new SnapTask().execute();
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MapsActivity.this, "Error downloading locations", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                    }
+                }
+            });
+        }
+    }
+
+    class SnapTask extends AsyncTask<Void, Void, Integer> {
+
         LatLngBounds.Builder bounds = new LatLngBounds.Builder();
         LocationInfo[] locs = mTrip.getLocations();
         LocationInfo origin = mTrip.getOrigin();
         LocationInfo destination = mTrip.getDestination();
 
-        new AsyncTask<Void, Void, Void>() {
-            protected void onPreExecute() {
-                // Pre Code
-            }
+        @Override
+        protected void onPreExecute() {
+            // Pre Code
+        }
 
-            protected Void doInBackground(Void... unused) {
-                mTrip.calculateSnappedLocations();
-                return null;
-            }
+        @Override
+        protected Integer doInBackground(Void... unused) {
+            return mTrip.setSnappedLocations();
+        }
 
-            protected void onPostExecute(Void unused) {
+        @Override
+        protected void onPostExecute(Integer result) {
+
+            if (result == Constants.NO_ERROR) {
                 if (locs != null) {
-                    for (SnappedPoint loc : mTrip.getSnappedPoints()) {
+                    for (SnappedPoint loc : mTrip.getLocationsSnapped()) {
                         includeLocation(loc.coordinates, bounds);
                         //includeLocation(loc,bounds);
                     }
@@ -94,8 +126,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     });
                 }
+            } else {
+                Toast.makeText(MapsActivity.this, "Error snapping locations", Toast.LENGTH_LONG).show();
             }
-        }.execute();
+        }
 
 
     }

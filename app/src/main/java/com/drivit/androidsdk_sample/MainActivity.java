@@ -69,7 +69,7 @@ public class MainActivity extends DrivitStatusActivity {
     }
 
     private void setTextView(TextView version, String drivitStatus) {
-        version.setText("Core version: " + DrivitUtils.getSdkVersion(this) + ", account: " + DrivitUser.getEmail(this)
+        version.setText("Core version: " + DrivitUtils.getSdkVersion(this) + ", account: " + DrivitUser.getUser(this).getEmail()
                 + "\nDrivit status: " + drivitStatus + ", click to see more");
     }
 
