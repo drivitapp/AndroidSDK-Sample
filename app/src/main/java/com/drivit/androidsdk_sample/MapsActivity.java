@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.drivit.core.DrivitCloud;
 import com.drivit.core.DrivitUser;
 import com.drivit.core.trips.LocationInfo;
+import com.drivit.core.trips.RoadSnapResult;
 import com.drivit.core.trips.SnappedPoint;
 import com.drivit.core.trips.TripType;
 import com.drivit.core.utils.Constants;
@@ -94,7 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected Integer doInBackground(Void... unused) {
-            return mTrip.setSnappedLocations();
+            return mTrip.getSnappedLocations().result;
         }
 
         @Override
@@ -102,8 +103,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if (result == Constants.NO_ERROR) {
                 if (locs != null) {
-                    for (SnappedPoint loc : mTrip.getLocationsSnapped()) {
-                        includeLocation(loc.coordinates, bounds);
+                    RoadSnapResult snapResult = mTrip.getSnappedLocations();
+                    for (LocationInfo loc : snapResult.snappedArray) {
+                        includeLocation(loc.toLatLng(), bounds);
                         //includeLocation(loc,bounds);
                     }
                 }
