@@ -1,6 +1,8 @@
 # SDK versions
 
 In this section you can find what has changed from version to version
+
+## 3.10.4
 ## 3.7.10-alpha
 * ```CheckAndSyncManager#syncAccelAndTrips``` now receives a boolean as argument that tells the SDK if it should sync trip classification data
 * New callback method ```DrivitBroadcastReceiver#onInvalidGoogleApiKey``` that informs the app when the given api key is invalid
