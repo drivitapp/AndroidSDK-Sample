@@ -5,7 +5,11 @@ In this section you can find what has changed from version to version
 ## 3.11
 * ```DrivitStatusManager``` may now return a new missing setting id: ```SETTING_SIM_CARD_ABSENT```
 in cases where no SIM card is available on the user's device. Your app should handle
-this situation with the appropriate localized strings as in the remaining settings.
+this situation with the appropriate localized strings as in the remaining settings
+* ```DrivitStatusManager``` may now return a new missing setting id: ```SETTING_AIRPLANE_ACTIVATED```
+in cases where the air plane mode is activated. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* Several minor bug fixes and improvements
 ## 3.10.4
 * New method ```DrivitSettings.enableTripClassification()``` that explicitly tells the SDK if it should compute the trip classification metrics.
 Should be called on your Application ```onCreate()``` method. If your app is not using trip classification, you should ignore this method
