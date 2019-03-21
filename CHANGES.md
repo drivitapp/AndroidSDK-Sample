@@ -2,7 +2,7 @@
 
 In this section you can find what has changed from version to version
 
-## 3.11
+## 3.12.3
 * ```DrivitStatusManager``` may now return a new missing setting id: ```SETTING_SIM_CARD_ABSENT```
 in cases where no SIM card is available on the user's device. Your app should handle
 this situation with the appropriate localized strings as in the remaining settings
