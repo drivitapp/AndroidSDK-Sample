@@ -59,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (mTrip.areLocationsAndEventsAvailable()) {
+        if (mTrip.areLocationsAndEventsLocallyAvailable()) {
             new SnapTask().execute();
         } else {
             mTrip.downloadLocationsAndEvents(new DrivitCloud.OperationListener() {

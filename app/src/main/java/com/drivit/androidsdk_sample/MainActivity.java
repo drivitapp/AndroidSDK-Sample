@@ -63,8 +63,6 @@ public class MainActivity extends DrivitStatusActivity {
         }else{
             version.setText("Not logged");
         }
-
-        DrivitSettings.getInstance(this).setIgnoreOverlayPermission(true);
     }
 
     private void setTextView(TextView version, String drivitStatus) {
