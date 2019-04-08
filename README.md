@@ -141,4 +141,4 @@ And that is it! Safe trips!
 
 **The Drivit Team**
 
-<br/><br/>P.S. You can see the complete reference documentation [here](https://jitpack.io/com/github/drivitapp/AndroidSDK/3.6.16/javadoc/)
+<br/><br/>P.S. You can see the complete reference documentation [here](https://jitpack.io/com/github/drivitapp/AndroidSDK/3.12.4.1/javadoc/)
