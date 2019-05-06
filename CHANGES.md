@@ -2,6 +2,9 @@
 
 In this section you can find what has changed from version to version
 
+## 3.12.8
+* Fixes communication issues between the SDK and the Drivit servers
+* Minor bug fixes
 ## 3.12.4.1
 * ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_SIM_CARD_ABSENT```
 in cases where no SIM card is available on the user's device. Your app should handle
