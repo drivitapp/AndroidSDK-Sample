@@ -2,6 +2,23 @@
 
 In this section you can find what has changed from version to version
 
+## 4.0.0
+* New class ```DrivitSession``` that controls behaviors of the Drivit SDK in each memory session
+* The method ```DrivitSettings#enableTripClassification()``` is now accessed through ```DrivitSession```
+* The method ```DrivitSettings#enableDebug()``` is now accessed through ```DrivitSession```
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_XIAOMI_BACKGROUND_PERMISSION```
+for some Xiaomi devices where a special permission should be given. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_HUAWEI_BACKGROUND_PERMISSION_NOUGAT```
+for some Huawei devices where a special permission should be given. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* A new method ```DebugSession#debugCustomPermission(int)``` was created. Calling this method with a custom permission id from
+```DrivitStatusManager``` will enable you to debug the implementation of custom permissions provided by the SDK by returning them
+in any device as if they were missing
+* 1st phase of preparations to increase the ```targetSdkVersion``` to 28 ahead of the November 2019 deadline
+* Several trip recording improvements
+* Several battery consumption improvements
+* Several minor bug fixes and other improvements
 ## 3.12.8
 * Fixes communication issues between the SDK and the Drivit servers
 * Minor bug fixes
