@@ -98,22 +98,31 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         TripType trip = mDataSet[position];
-        viewHolder.getTextView_timeOrigin().setText("Beggining: " + SimpleDateFormat.getDateTimeInstance().format(mDataSet[position].getTimeOrigin())+", "+trip.getAddressOrigin());
-        viewHolder.getTextView_timeDestination().setText("End: " + SimpleDateFormat.getDateTimeInstance().format(mDataSet[position].getTimeDestination())+", "+trip.getAddressDestination()
+        viewHolder.getTextView_timeOrigin().setText("Beggining: " + SimpleDateFormat.getDateTimeInstance().format(mDataSet[position].getTimeOrigin()) + ", " + trip.getAddressOrigin());
+
+        String consumptionDataString = "Consumption data not yet available";
+        if (trip.getConsumptionData() != null) {
+            consumptionDataString = "Base consumption: " + trip.getConsumptionData().getFuelConsumption() + "l/100km"
+                    + "\nBase cost: " + trip.getConsumptionData().getTotalCost();
+        }
+
+        viewHolder.getTextView_timeDestination().setText("End: " + SimpleDateFormat.getDateTimeInstance().format(mDataSet[position].getTimeDestination()) + ", " + trip.getAddressDestination()
                 + "\nDistance: " + trip.getDistance()
                 + "\nConsumption: " + trip.getConsumption()
                 + "\nMoney: " + trip.getMoneySpent()
                 + "\nScore: " + trip.getRiskScore()
-        +"\nRejection state: "+trip.getRejectedReason());
+                + "\nRejection state: " + trip.getRejectedReason()
+                + "\nCarGuid: " + trip.getAssociatedVehicleGuid()
+                + "\n" + consumptionDataString);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trip.hasAnyLocationPoint()){
+                if (trip.hasAnyLocationPoint()) {
                     Intent intent = new Intent(v.getContext(), MapsActivity.class);
                     intent.putExtra(TRIP_GUID, trip.getGuid());
                     v.getContext().startActivity(intent);
-                }else{
+                } else {
                     Toast.makeText(v.getContext(), "Trip has no locations", Toast.LENGTH_SHORT).show();
                 }
             }
