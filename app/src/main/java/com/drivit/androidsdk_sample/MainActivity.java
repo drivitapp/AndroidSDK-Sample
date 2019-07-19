@@ -105,16 +105,15 @@ public class MainActivity extends DrivitStatusActivity {
                 break;
 
             case R.id.action_simulate:
-                if (DrivitUser.isUserLogged(this)) {
-                    DrivitUtils.simulateTrip(MainActivity.this, new DrivitUtils.OnCompletedListener() {
-                        @Override
-                        public void onCompleted(boolean b, int i) {
-
+                DrivitUtils.simulateTrip(MainActivity.this, new DrivitUtils.OnCompletedListener() {
+                    @Override
+                    public void onCompleted(boolean success, int errorCause) {
+                        if (errorCause != DrivitUtils.TRIP_SIMULATION_SUCCESS) {
+                            Toast.makeText(MainActivity.this, "Error: " + errorCause, Toast.LENGTH_SHORT).show();
                         }
-                    });
-                } else {
-                    Toast.makeText(this, "You have to be logged in to simulate trips", Toast.LENGTH_SHORT).show();
-                }
+                    }
+                });
+
 
                 break;
         }

@@ -17,6 +17,7 @@
 package com.drivit.androidsdk_sample;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -86,12 +87,16 @@ public class RecyclerViewFragment extends Fragment {
         setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         //mAdapter = new TripAdapter(Arrays.stream(mDataset).sorted((a, b)-> Long.compare(b.tsStart,a.tsEnd)).toArray(TripType[]::new));
-        mAdapter=new TripAdapter(mDataset);
+        initAdapter();
         // Set TripAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
 
         return rootView;
+    }
+
+    private void initAdapter() {
+        mAdapter = new TripAdapter(mDataset);
     }
 
     /**
@@ -139,12 +144,24 @@ public class RecyclerViewFragment extends Fragment {
      */
     private void initDataset() {
 
-        DrivitUser user= DrivitUser.getUser(getContext());
+        mDataset = new TripType[0];
+        (new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                DrivitUser user = DrivitUser.getUser(getContext());
+                if (user != null) {
+                    mDataset = user.getTrips();
 
-        if (user!=null) {
-            mDataset = user.getTrips(getActivity());
-        } else {
-            mDataset = new TripType[0];
-        }
+                    if (mAdapter == null) initAdapter();
+                    mAdapter.setData(mDataset);
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                mAdapter.notifyDataSetChanged();
+            }
+        }).execute();
     }
 }
