@@ -108,8 +108,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
         viewHolder.getTextView_timeDestination().setText("End: " + SimpleDateFormat.getDateTimeInstance().format(mDataSet[position].getTimeDestination()) + ", " + trip.getAddressDestination()
                 + "\nDistance: " + trip.getDistance()
-                + "\nConsumption: " + trip.getConsumption()
-                + "\nMoney: " + trip.getMoneySpent()
                 + "\nScore: " + trip.getRiskScore()
                 + "\nRejection state: " + trip.getRejectedReason()
                 + "\nCarGuid: " + trip.getAssociatedVehicleGuid()
