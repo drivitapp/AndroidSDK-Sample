@@ -1,0 +1,52 @@
+# Change log
+
+In this section you can find what has changed from version to version
+
+## 4.0.0
+* New class ```DrivitSession``` that controls behaviors of the Drivit SDK in each memory session
+* The method ```DrivitSettings#enableTripClassification()``` is now accessed through ```DrivitSession```
+* The method ```DrivitSettings#enableDebug()``` is now accessed through ```DrivitSession```
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_XIAOMI_BACKGROUND_PERMISSION```
+for some Xiaomi devices where a special permission should be given. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_HUAWEI_BACKGROUND_PERMISSION_NOUGAT```
+for some Huawei devices where a special permission should be given. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* A new method ```DebugSession#debugCustomPermission(int)``` was created. Calling this method with a custom permission id from
+```DrivitStatusManager``` will enable you to debug the implementation of custom permissions provided by the SDK by returning them
+in any device as if they were missing
+* 1st phase of preparations to increase the ```targetSdkVersion``` to 28 ahead of the November 2019 deadline
+* Several trip recording improvements
+* Several battery consumption improvements
+* Several minor bug fixes and other improvements
+## 3.12.8
+* Fixes communication issues between the SDK and the Drivit servers
+* Minor bug fixes
+## 3.12.4.1
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_SIM_CARD_ABSENT```
+in cases where no SIM card is available on the user's device. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_AIRPLANE_ACTIVATED```
+in cases where the air plane mode is activated. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_SAMSUNG_UNMONITORED```
+in specific Samsungs models which have a custom restriction that should be removed by the user. Your app should handle
+this situation with the appropriate localized strings as in the remaining settings
+* Several minor bug fixes and improvements
+## 3.10.4
+* New method ```DrivitSettings.enableTripClassification()``` that explicitly tells the SDK if it should compute the trip classification metrics.
+Should be called on your Application ```onCreate()``` method. If your app is not using trip classification, you should ignore this method
+* If trip classification is enabled, ```DrivitStatusManager``` will automatically start
+requiring an additional permission from your users (Overlay permission). Your app
+should handle the appropriate localized strings as in all other settings
+* The field ```guid``` from the object ```TripType``` is now private. Should you need access to it,
+use the method ```TripType#getGuid()```
+* Improvements in the SDK battery consumption
+* Several minor bug fixes and improvements
+## 3.7.10-alpha
+* ```CheckAndSyncManager#syncAccelAndTrips``` now receives a boolean as argument that tells the SDK if it should sync trip
+classification data. If your app is not using classification, you should use false as argument
+* New optional callback method ```DrivitBroadcastReceiver#onInvalidGoogleApiKey``` that informs the app when the given google api key is invalid
+* Method ```areLocationsAndEventsAvailable``` was refactored to ```areLocationsAndEventsLocallyAvailable```. Its objective remains the same
+* Several minor bug fixes and improvements
+

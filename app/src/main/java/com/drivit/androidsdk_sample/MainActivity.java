@@ -63,9 +63,6 @@ public class MainActivity extends DrivitStatusActivity {
         }else{
             version.setText("Not logged");
         }
-
-        DrivitSettings.setIgnoreOverlayPermission(MainActivity.this,true);
-
     }
 
     private void setTextView(TextView version, String drivitStatus) {
@@ -104,12 +101,17 @@ public class MainActivity extends DrivitStatusActivity {
                 break;
 
             case R.id.action_logout:
-                new DrivitLoginSignupOperation().logout(this);
+                new DrivitLoginSignupOperation(this).logout();
                 break;
 
             case R.id.action_simulate:
                 if (DrivitUser.isUserLogged(this)) {
-                    DrivitUtils.simulateTrip(MainActivity.this);
+                    DrivitUtils.simulateTrip(MainActivity.this, new DrivitUtils.OnCompletedListener() {
+                        @Override
+                        public void onCompleted(boolean b, int i) {
+
+                        }
+                    });
                 } else {
                     Toast.makeText(this, "You have to be logged in to simulate trips", Toast.LENGTH_SHORT).show();
                 }
@@ -186,7 +188,7 @@ public class MainActivity extends DrivitStatusActivity {
                 EditText userName = (EditText) dialog.findViewById(R.id.edit_email);
                 EditText password = (EditText) dialog.findViewById(R.id.edit_password);
 
-                DrivitLoginSignupOperation login = new DrivitLoginSignupOperation();
+                DrivitLoginSignupOperation login = new DrivitLoginSignupOperation(MainActivity.this);
                 login.doLogin(MainActivity.this, userName.getText().toString(), password.getText().toString(), new LoginListener() {
                     @Override
                     public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {

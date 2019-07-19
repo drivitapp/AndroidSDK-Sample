@@ -111,7 +111,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
             public void onClick(View v) {
                 if (trip.hasAnyLocationPoint()){
                     Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                    intent.putExtra(TRIP_GUID, trip.guid);
+                    intent.putExtra(TRIP_GUID, trip.getGuid());
                     v.getContext().startActivity(intent);
                 }else{
                     Toast.makeText(v.getContext(), "Trip has no locations", Toast.LENGTH_SHORT).show();
