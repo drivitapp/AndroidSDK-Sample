@@ -2,6 +2,8 @@
 
 In this section you can find what has changed from version to version
 
+## 4.1.1
+* xxx
 ## 4.0.0
 * New class ```DrivitSession``` that controls behaviors of the Drivit SDK in each memory session
 * The method ```DrivitSettings#enableTripClassification()``` is now accessed through ```DrivitSession```
