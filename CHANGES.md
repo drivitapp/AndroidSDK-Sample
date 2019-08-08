@@ -2,8 +2,13 @@
 
 In this section you can find what has changed from version to version
 
-## 4.1.1
-* xxx
+## 4.1.3
+* The Drivit SDK is now fully compatible with `targetSdkVersion` 28. You may configure your gradle accordingly. 
+Upgrading to `targetSdkVersion` 28 may impact your app outside the scope of our SDK. For more information,
+please check the Google documentation, in particular the [target API level requirements](https://developer.android.com/distribute/best-practices/develop/target-sdk#prepie). 
+Please take your time to test your app before releasing a new version to the Play Store
+* Core Google libraries that Drivit uses were updated
+* Minor bug fixes and improvements
 ## 4.0.0
 * New class ```DrivitSession``` that controls behaviors of the Drivit SDK in each memory session
 * The method ```DrivitSettings#enableTripClassification()``` is now accessed through ```DrivitSession```
