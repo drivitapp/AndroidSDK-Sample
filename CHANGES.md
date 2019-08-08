@@ -6,7 +6,9 @@ In this section you can find what has changed from version to version
 * The Drivit SDK is now fully compatible with `targetSdkVersion` 28. You may configure your gradle accordingly. 
 Upgrading to `targetSdkVersion` 28 may impact your app outside the scope of our SDK. For more information,
 please check the Google documentation, in particular the [target API level requirements](https://developer.android.com/distribute/best-practices/develop/target-sdk#prepie). 
-Please take your time to test your app before releasing a new version to the Play Store
+Please take your time to test your app before releasing a new upgraded version to the Play Store. 
+* If necessary, you can release a new version of your app to the Play Store with this SDK version without upgrading to
+`targetSdkVersion` 28, contact our team to know more
 * Core Google libraries that Drivit uses were updated
 * Minor bug fixes and improvements
 ## 4.0.0
