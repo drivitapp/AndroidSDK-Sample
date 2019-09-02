@@ -2,6 +2,9 @@
 
 In this section you can find what has changed from version to version
 
+## 3.12.11
+* Fixes communication issues between the SDK and Google APIs. These issues were already dealt with from version 4.0.0 onwards. The 
+purpose of this release is for apps where 4.0.0+ was not integrated yet and therefore a fix should be released to production with minimum changes
 ## 4.1.3
 * The Drivit SDK is now fully compatible with `targetSdkVersion` 28. You may configure your gradle accordingly. 
 Upgrading to `targetSdkVersion` 28 may impact your app outside the scope of our SDK. For more information,
@@ -27,7 +30,7 @@ in any device as if they were missing
 * 1st phase of preparations to increase the ```targetSdkVersion``` to 28 ahead of the November 2019 deadline
 * Several trip recording improvements
 * Several battery consumption improvements
-* Several minor bug fixes and other improvements
+* Several minor bug fixes and other improvements 
 ## 3.12.8
 * Fixes communication issues between the SDK and the Drivit servers
 * Minor bug fixes
