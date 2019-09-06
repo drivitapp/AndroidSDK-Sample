@@ -2,6 +2,15 @@
 
 In this section you can find what has changed from version to version
 
+## 4.2.6.5
+* Drivit is now fully compatible with the new Android 10 (Q), in particular with the new location permissions system. 
+You should update the permissions strings in your app (related with the `DrivitStatusManager`) to reflect this change.
+Please contact us when you do so
+* As such, the Drivit SDK is now compiled with `compileSdkVersion` 29. You may have to update your app's gradle as well
+* The ids of trip classification (e.g. `TripType#VALIDITY_REJECTED_BY_USER_OTHER`) were refactored to better reflect
+their nature. They are now prefixed with 'CLASSIFICATION' instead of 'VALIDITY'
+* `SETTING_HUAWEI_BACKGROUND_PERMISSION_NOUGAT` was refactored to `SETTING_HUAWEI_BACKGROUND_NOUGAT`. Its purpose remains the same
+* `SETTING_HUAWEI_BACKGROUND_PERMISSION_OREO_AND_ABOVE` was refactored to `SETTING_HUAWEI_BACKGROUND_OREO_AND_ABOVE`. Its purpose remains the same
 ## 3.12.11
 * Fixes communication issues between the SDK and Google APIs. These issues were already dealt with from version 4.0.0 onwards. The 
 purpose of this release is for apps where 4.0.0+ was not integrated yet and therefore a fix should be released to production with minimum changes
