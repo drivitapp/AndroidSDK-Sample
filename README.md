@@ -126,17 +126,30 @@ public class MyApplication extends DrivitApplication {
 ```
 If you don't set any notifications, the SDK will use the default ones.
 ### 4. Login/signup your user into the SDK
-You have to login the user into the SDK before it starts recording trips. To do so, create an instance of the ```DrivitLoginSignupOperation``` object and provide it with the info of your user
+You have to login the user into the SDK before it starts recording trips. 
+To do so, create an instance of the ```DrivitLoginSignupOperation``` object and 
+provide it with the info of your user:
 
 ```
-DrivitLoginSignupOperation login = new DrivitLoginSignupOperation();
-login.doLogin(context, "mail@mail.com", "password", null, new LoginListener() {
+DrivitLoginSignupOperation login = new DrivitLoginSignupOperation(context);
+login.doLogin(context, "mail@mail.com", "password", new LoginListener() {
      @Override
      public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {
-          Toast.makeText(context, "Login completed: " + codeOk + ", cause: " + cause, Toast.LENGTH_SHORT).show();
+          
      }
 });
 ```
+
+Or, for extended privacy, just use an encrypted user id:
+```
+login.doLogin(context, encryptedUserId, new LoginListener() {
+     @Override
+     public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {
+          
+     }
+});
+```
+
 And that is it! Safe trips!
 
 **The Drivit Team**
