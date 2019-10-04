@@ -2,6 +2,8 @@
 
 In this section you can find what has changed from version to version
 
+## 4.2.6.6
+* Minor bug fixes and other improvements
 ## 4.2.6.5
 * Drivit is now fully compatible with the new Android 10 (Q), in particular with the new location permissions system. 
 You should update the permissions strings in your app (related with the `DrivitStatusManager`) to reflect this change.
