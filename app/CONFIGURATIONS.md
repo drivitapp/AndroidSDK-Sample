@@ -2,10 +2,10 @@
 # Configurations
 
 Drivit requires certain configurations to properly record user trips. These configurations cover several situations, namely:
-* Internal SDK configurations. For example, if your app turns off the recording engine, the SDK will return an error through `SETTING_RECORDING_STATUS`. These configurations are optional and need only to be configured if your app changes the default value;
-* Android permissions that are given by default by the system but that the user can turn off at any moment, e.g. `SETTING_INTERNET`. These configurations are mandatory and need to be handled by your app;
-* Android permissions that are not given by default by the system and that your app must explicitly ask, e.g. `SETTING_LOCATION_RESOLVABLE`. These configurations are mandatory and need to be handled by your app;
-* Custom permissions created by specific OEMs, e.g. Huawei. Unlike the above-mentioned situations, for technical reasons, Drivit can't confirm that the user has correctly configured them. 
+* **Internal SDK configurations**. For example, if your app turns off the recording engine, the SDK will return an error through `SETTING_RECORDING_STATUS`. These configurations are optional and need only to be configured if your app changes the default value;
+* **Android permissions that are given by default by the system but that the user can turn off at any moment**, e.g. `SETTING_INTERNET`. These configurations are mandatory and need to be handled by your app;
+* **Android permissions that are not given by default by the system and that your app must explicitly ask**, e.g. `SETTING_LOCATION_RESOLVABLE`. These configurations are mandatory and need to be handled by your app;
+* **Custom permissions created by specific OEMs**, e.g. Huawei. Unlike the above-mentioned situations, for technical reasons, Drivit can't confirm that the user has correctly configured them. 
 These configurations are mandatory and need to be handled by your app
 
 
