@@ -2,6 +2,12 @@
 
 In this section you can find what has changed from version to version
 
+## 5.2.0-alpha1
+This is an alpha release that should not be used in production. Changes from previous version:
+* Two unnecessary user permissions were removed from the SDK
+* `DrivitCloud#fallbackCheck()` has been deprecated and can be safely removed
+* New method `DrivitLoginSignupOperation#setRegion()` to set a geographic region in each signup
+* Several internal improvements and bug fixes
 ## 4.2.6.6
 * Minor bug fixes and other improvements
 ## 4.2.6.5
