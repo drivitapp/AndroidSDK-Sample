@@ -7,6 +7,8 @@ This is an alpha release that should not be used in production. Changes from pre
 * Two unnecessary user permissions were removed from the SDK
 * `DrivitCloud#fallbackCheck()` has been deprecated and can be safely removed
 * New method `DrivitLoginSignupOperation#setRegion()` to set a geographic region in each signup
+* The method `VehicleSettings#setFuelPrice(double,boolean)` was simplified to `VehicleSettings#setFuelPrice(double)`. You can safely remove the boolean argument
+* The deprecated method `DrivitUser#getTrips(Context)` was removed. Use `DrivitUser#getTrips()` instead
 * Several internal improvements and bug fixes
 ## 4.2.6.6
 * Minor bug fixes and other improvements
