@@ -2,6 +2,12 @@
 
 In this section you can find what has changed from version to version
 
+## 5.2.0-alpha2
+This is an alpha release that should not be used in production. Changes from previous version:
+* The SDK now returns different results as a function of the region of the user as set by `DrivitLoginSignupOperation#setRegion()`. In particular, in the APIs related to vehicle setup
+* `VehicleDetails#getDisplacement()` was deprecated. Use `VehicleDetails#getEngineDisplacement()` instead
+* `VehicleDetails#getPower()` was deprecated. Use `VehicleDetails#getEnginePower()` instead
+* Minor bug fixes and internal improvements
 ## 5.2.0-alpha1
 This is an alpha release that should not be used in production. Changes from previous version:
 * Two unnecessary user permissions were removed from the SDK
