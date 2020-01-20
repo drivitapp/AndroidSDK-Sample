@@ -2,6 +2,8 @@
 
 In this section you can find what has changed from version to version
 
+## 5.2.0
+* Minor bug fixes
 ## 5.2.0-alpha2
 This is an alpha release that should not be used in production. Changes from previous version:
 * The SDK now returns different results as a function of the region of the user as set by `DrivitLoginSignupOperation#setRegion()`. In particular, in the APIs related to vehicle setup
