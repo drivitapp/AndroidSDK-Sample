@@ -2,6 +2,9 @@
 
 In this section you can find what has changed from version to version
 
+## 5.3.0-beta
+* Adds WLTP properties on vehicle details
+* Minor bug fixes
 ## 5.2.0
 * Minor bug fixes
 ## 5.2.0-alpha2
