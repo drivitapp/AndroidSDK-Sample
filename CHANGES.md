@@ -2,6 +2,8 @@
 
 In this section you can find what has changed from version to version
 
+## 5.3.0
+* Minor bug fixes
 ## 5.3.0-beta1
 * Adds new WLTP properties on the `Report` object
 * New fuel type id `VehicleType#FUELTYPE_ETHANOL` that can be used to get ethanol-based vehicles
