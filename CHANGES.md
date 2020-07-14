@@ -6,14 +6,14 @@ In this section you can find what has changed from version to version
 * The Drivit SDK address has changed. Just replace the old address in your gradle by the following: `com.github.drivitapp:android-core:6.0.0-beta1`
 * Full compatibility with `targetSdkVersion` 29. You may configure your gradle accordingly. 
   Upgrading to `targetSdkVersion` 29 may impact your app outside the scope of our SDK. For more information,
-  please check the Google documentation, in particular the [behavior changes](https://developer.android.com/about/versions/10/behavior-changes-10) of the new OS. 
+  please check the Google documentation, in particular the respective [behavior changes](https://developer.android.com/about/versions/10/behavior-changes-10). 
   Please take your time to test your app before releasing a new upgraded version to the Play Store
 * ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_PHYSICAL_ACTIVITY```
   in cases where the user has to provide the phsical activity permission. Your app should handle
   this situation with the appropriate localized strings as in the remaining settings
 * Internal support libraries were replaced by the new [AndroidX libraries](https://developer.android.com/jetpack/androidx/migrate)
-* Already tested against Android 11 Beta 
-* Core Google libraries that Drivit uses were updated
+* Fully tested against Android 11 Beta 
+* Core internal libraries that Drivit uses were updated
 * Minor bug fixes and improvements
 
 ## 5.3.0
