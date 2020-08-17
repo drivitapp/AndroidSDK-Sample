@@ -5,15 +5,15 @@ In this section you can find what has changed from version to version
 ## 6.0.0
 * The following methods, which were already deprecated in the past, were removed from the SDK and
 can be safely removed in your app:
-** ```DrivitApplication#onAdapterServiceStop()```
-** ```DrivitApplication#onCarWithDifferentVIN()```
-** ```DrivitApplication#getAdquiringLocationNotification_OBD()```
-** ```DrivitApplication#getDetected_ConnectingNotification_OBD()```
-** ```DrivitApplication#getRecordingNotification_OBD()```
-** ```DrivitBroadcastReceiver#onOBDTripEnd()```
-** ```NotificationInterface#getAdquiringLocationNotification_OBD()```
-** ```NotificationInterface#getDetected_ConnectingNotification_OBD()```
-** ```NotificationInterface#getRecordingNotification_OBD()```
+  * ```DrivitApplication#onAdapterServiceStop()```
+  * ```DrivitApplication#onCarWithDifferentVIN()```
+  * ```DrivitApplication#getAdquiringLocationNotification_OBD()```
+  * ```DrivitApplication#getDetected_ConnectingNotification_OBD()```
+  * ```DrivitApplication#getRecordingNotification_OBD()```
+  * ```DrivitBroadcastReceiver#onOBDTripEnd()```
+  * ```NotificationInterface#getAdquiringLocationNotification_OBD()```
+  * ```NotificationInterface#getDetected_ConnectingNotification_OBD()```
+  * ```NotificationInterface#getRecordingNotification_OBD()```
 * ```DrivitStatusManager``` may now return a new missing setting id ```SETTING_GOOGLE_PLAY_SERVICES```
   in cases where the user has to update Google Play Services. Your app should handle
   this situation with the appropriate localized strings as in the remaining settings
