@@ -105,13 +105,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (locs != null) {
                     RoadSnapResult snapResult = mTrip.getSnappedLocations();
                     for (LocationInfo loc : snapResult.snappedArray) {
-                        includeLocation(new LatLng(loc.la,loc.lo), bounds);
+                        includeLocation(new LatLng(loc.la, loc.lo), bounds);
                         //includeLocation(loc,bounds);
                     }
                 }
 
-                if (origin != null) includeLocation(new LatLng(origin.la,origin.lo), bounds);
-                if (destination != null) includeLocation(new LatLng(destination.la,destination.lo), bounds);
+                if (origin != null) includeLocation(new LatLng(origin.la, origin.lo), bounds);
+                if (destination != null)
+                    includeLocation(new LatLng(destination.la, destination.lo), bounds);
 
                 //We have to confirm the view is laid out
                 View container = findViewById(R.id.mapContainer);
@@ -129,7 +130,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     });
                 }
             } else {
-                Toast.makeText(MapsActivity.this, "Error snapping locations", Toast.LENGTH_LONG).show();
+                Toast.makeText(MapsActivity.this, "Error snapping locations, error: " + result, Toast.LENGTH_LONG).show();
             }
         }
     }

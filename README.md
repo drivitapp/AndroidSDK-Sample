@@ -9,7 +9,7 @@ To use the Drivit SDK you need an API Key. Contact us at support@drivit.com to g
 ### 1. Add the following dependency to your module-level build.gradle file
 ```gradle
 dependencies {
-    implementation 'com.github.drivitapp:AndroidSDK:4.0.0'
+    implementation 'com.github.drivitapp:android-core:6.0.0'
 }
 
 ```
@@ -25,22 +25,6 @@ allprojects {
 The SDK makes use of features enabled by Java 8. Just add the **compileOptions** option as in the example bellow.
 ```gradle
 android {
-    compileSdkVersion 26
-    defaultConfig {
-        applicationId "com.drivit.androidsdk_sample"
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -98,21 +82,6 @@ public class MyApplication extends DrivitApplication {
     }
 
     @Override
-    public Notification getRecordingNotification_OBD(boolean b, boolean b1) {
-        return null;
-    }
-
-    @Override
-    public Notification getAdquiringLocationNotification_OBD() {
-        return null;
-    }
-
-    @Override
-    public Notification getDetected_ConnectingNotification_OBD() {
-        return null;
-    }
-
-    @Override
     public BroadcastReceiver getAppReceiver() {
         return null;
     }
@@ -122,7 +91,6 @@ public class MyApplication extends DrivitApplication {
 ```xml
 <application
         android:name=".MyApplication"
-        ...
 />
 ```
 If you don't set any notifications, the SDK will use the default ones.
@@ -155,4 +123,4 @@ And that is it! Safe trips!
 
 **The Drivit Team**
 
-<br/><br/>P.S. You can see the complete reference documentation [here](https://jitpack.io/com/github/drivitapp/AndroidSDK/4.0.0/javadoc/)
+<br/><br/>P.S. You can see the complete reference documentation [here](https://javadoc.jitpack.io/com/github/drivitapp/android-core/6.0.0/javadoc/reference/packages.html)

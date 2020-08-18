@@ -22,13 +22,14 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="Trip map"/>
+            android:label="Trip map" />
 
-        <!--Google API Key. Enables the Maps SDK so that trips can be shown on a map. If you choose
-        other maps supplier, you can ignore this Key-->
+        <!--Google API Key. Only used by this sample app and not by the Drivit SDK. It enables the
+         Google Maps SDK so that trips can be shown on a map. If you don't use the Google Maps map,
+         you may ignore it-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="${yourGoogleMapsApiKey}" />
 
         <!--Google Api Key. Enables the Google Awareness API which Drivit uses in its inner workings.
         You can also use the services enabled by this app, more info here: https://developers.google.com/awareness/overview
@@ -37,6 +38,8 @@
             android:name="com.google.android.awareness.API_KEY"
             android:value="YOUR_API_KEY" />
 
+        <!--Drivit Api Key. You have to contact our team to have one. Without it, the Drivit SDK
+        will not work-->
         <meta-data
             android:name="com.drivit.API_KEY"
             android:value="${yourDrivitApiKey}" />

@@ -28,7 +28,6 @@ import com.drivit.core.utils.LoginListener;
 
 import java.util.ArrayList;
 
-//test1
 public class MainActivity extends DrivitStatusActivity {
 
     @Override
@@ -70,7 +69,7 @@ public class MainActivity extends DrivitStatusActivity {
     }
 
     private void setTextView(TextView version, String drivitStatus) {
-        version.setText("Core version: " + DrivitUtils.getSdkVersion(this) + ", account: " + DrivitUser.getUser(this).getEmail()
+        version.setText("Drivit SDK version: " + DrivitUtils.getSdkVersion(this) + ", account: " + DrivitUser.getUser(this).getEmail()
                 + "\nDrivit status: " + drivitStatus + ", click to see more");
     }
 
@@ -88,15 +87,6 @@ public class MainActivity extends DrivitStatusActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_feedback:
-                showFeedbackDialog();
-                break;
-            case R.id.crash:
-                throw new RuntimeException();
-
-            case R.id.action_sendLogs:
-                sendLogs();
-                break;
 
             case R.id.action_login:
                 login();
@@ -105,6 +95,20 @@ public class MainActivity extends DrivitStatusActivity {
             case R.id.action_logout:
                 new DrivitLoginSignupOperation(this).logout();
                 refreshContent();
+                break;
+
+            case R.id.action_refresh_trip_list:
+                refreshContent();
+                break;
+
+            case R.id.action_feedback:
+                showFeedbackDialog();
+                break;
+            case R.id.crash:
+                throw new RuntimeException();
+
+            case R.id.action_sendLogs:
+                sendLogs();
                 break;
 
             case R.id.action_simulate:
@@ -177,6 +181,11 @@ public class MainActivity extends DrivitStatusActivity {
 
     private void login() {
 
+        if (DrivitUser.isUserLogged(getApplication())) {
+            Toast.makeText(MainActivity.this, "Already logged in", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(this);
         dialogBuilder.title("Login");
         dialogBuilder.customView(R.layout.dialog_login, false);
@@ -190,17 +199,18 @@ public class MainActivity extends DrivitStatusActivity {
                 EditText userName = (EditText) dialog.findViewById(R.id.edit_email);
                 EditText password = (EditText) dialog.findViewById(R.id.edit_password);
 
+                //Authenticate with Drivit
                 DrivitLoginSignupOperation login = new DrivitLoginSignupOperation(MainActivity.this);
                 login.doLogin(MainActivity.this, userName.getText().toString(), password.getText().toString(), new LoginListener() {
                     @Override
                     public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {
-                        Toast.makeText(MainActivity.this, "Login completed: " + codeOk + ", cause: " + cause, Toast.LENGTH_SHORT).show();
-                        if (codeOk) {
-                            dialog.dismiss();
-                            refreshContent();
-                        }
+                        Toast.makeText(MainActivity.this, "Login completed, success? " + codeOk + ", cause: " + cause, Toast.LENGTH_SHORT).show();
+                        if (codeOk) refreshContent();
                     }
                 });
+
+                //Dismiss the login dialog
+                dialog.dismiss();
             }
         });
 

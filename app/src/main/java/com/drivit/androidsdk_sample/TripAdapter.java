@@ -73,6 +73,10 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
     public TripAdapter(TripType[] dataSet) {
+        setData(dataSet);
+    }
+
+    public void setData(TripType[] dataSet){
         mDataSet = dataSet;
     }
 

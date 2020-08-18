@@ -9,7 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        manifestPlaceholders = [yourDrivitApiKey: DRIVIT_API_KEY]
+
+        /*You can either define these keys in your local gradle.properties or directly in your manifest*/
+        manifestPlaceholders = [yourDrivitApiKey    : DRIVIT_API_KEY,
+                                yourGoogleMapsApiKey: GOOGLE_MAPS_API_KEY,
+                                yourAwarenessApiKey : AWARENESS_API_KEY]
     }
     buildTypes {
         release {
@@ -30,16 +34,13 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    //The Drivit SDK
     implementation 'com.github.drivitapp:android-core:6.0.0'
 
+    //UI libraries
     implementation 'com.google.android.libraries.maps:maps:3.1.0-beta'
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
