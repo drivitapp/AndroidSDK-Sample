@@ -2,25 +2,25 @@ package com.drivit.androidsdk_sample;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.drivit.core.DrivitCloud;
 import com.drivit.core.DrivitUser;
 import com.drivit.core.trips.LocationInfo;
 import com.drivit.core.trips.RoadSnapResult;
-import com.drivit.core.trips.SnappedPoint;
 import com.drivit.core.trips.TripType;
 import com.drivit.core.utils.Constants;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.maps.CameraUpdateFactory;
+import com.google.android.libraries.maps.GoogleMap;
+import com.google.android.libraries.maps.OnMapReadyCallback;
+import com.google.android.libraries.maps.SupportMapFragment;
+import com.google.android.libraries.maps.model.LatLng;
+import com.google.android.libraries.maps.model.LatLngBounds;
+import com.google.android.libraries.maps.model.MarkerOptions;
 
 /*13*/
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -105,13 +105,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (locs != null) {
                     RoadSnapResult snapResult = mTrip.getSnappedLocations();
                     for (LocationInfo loc : snapResult.snappedArray) {
-                        includeLocation(loc.toLatLng(), bounds);
+                        includeLocation(new LatLng(loc.la,loc.lo), bounds);
                         //includeLocation(loc,bounds);
                     }
                 }
 
-                if (origin != null) includeLocation(origin.toLatLng(), bounds);
-                if (destination != null) includeLocation(destination.toLatLng(), bounds);
+                if (origin != null) includeLocation(new LatLng(origin.la,origin.lo), bounds);
+                if (destination != null) includeLocation(new LatLng(destination.la,destination.lo), bounds);
 
                 //We have to confirm the view is laid out
                 View container = findViewById(R.id.mapContainer);
@@ -132,8 +132,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.makeText(MapsActivity.this, "Error snapping locations", Toast.LENGTH_LONG).show();
             }
         }
-
-
     }
 
     private void includeLocation(LatLng loc, LatLngBounds.Builder bounds) {

@@ -1,10 +1,10 @@
 package com.drivit.androidsdk_sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +16,6 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.drivit.core.DrivitCloud;
 import com.drivit.core.DrivitLoginSignupOperation;
-import com.drivit.core.DrivitSettings;
 import com.drivit.core.DrivitUser;
 import com.drivit.core.trips.DrivitStatusActivity;
 import com.drivit.core.trips.DrivitStatusManager;
@@ -46,7 +45,7 @@ public class MainActivity extends DrivitStatusActivity {
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
+        fab.hide();
 
         if (DrivitUser.isUserLogged(this)){
             DrivitStatusManager drivitStatus = DrivitStatusManager.getSingleton(this);
