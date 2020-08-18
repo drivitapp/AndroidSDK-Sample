@@ -1,13 +1,16 @@
 package com.drivit.androidsdk_sample;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,21 +36,23 @@ public class MainActivity extends DrivitStatusActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView version = findViewById(R.id.textView_version);
 
         setSupportActionBar(toolbar);
 
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            RecyclerViewFragment fragment = new RecyclerViewFragment();
-            transaction.replace(R.id.sample_content_fragment, fragment);
-            transaction.commit();
-        }
+        if (savedInstanceState == null) refreshContent();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
+    }
 
-        if (DrivitUser.isUserLogged(this)){
+    private void refreshContent() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        RecyclerViewFragment fragment = new RecyclerViewFragment();
+        transaction.replace(R.id.sample_content_fragment, fragment);
+        transaction.commit();
+
+        TextView version = findViewById(R.id.textView_version);
+        if (DrivitUser.isUserLogged(this)) {
             DrivitStatusManager drivitStatus = DrivitStatusManager.getSingleton(this);
             drivitStatus.addListener(status -> setTextView(version, drivitStatus.getStatusString(status)));
             drivitStatus.getCurrentStatus(status -> setTextView(version, drivitStatus.getStatusString(status)));
@@ -59,7 +64,7 @@ public class MainActivity extends DrivitStatusActivity {
                 dialogBuilder.adapter(new DrivitStatusAdapter(list), null);
                 dialogBuilder.build().show();
             });
-        }else{
+        } else {
             version.setText("Not logged");
         }
     }
@@ -82,8 +87,6 @@ public class MainActivity extends DrivitStatusActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_feedback:
                 showFeedbackDialog();
@@ -101,6 +104,7 @@ public class MainActivity extends DrivitStatusActivity {
 
             case R.id.action_logout:
                 new DrivitLoginSignupOperation(this).logout();
+                refreshContent();
                 break;
 
             case R.id.action_simulate:
@@ -191,8 +195,9 @@ public class MainActivity extends DrivitStatusActivity {
                     @Override
                     public void onCompleted(boolean codeOk, int cause, DrivitUser appUser) {
                         Toast.makeText(MainActivity.this, "Login completed: " + codeOk + ", cause: " + cause, Toast.LENGTH_SHORT).show();
-                        if (codeOk){
+                        if (codeOk) {
                             dialog.dismiss();
+                            refreshContent();
                         }
                     }
                 });
