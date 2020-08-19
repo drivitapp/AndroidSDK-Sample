@@ -13,8 +13,8 @@ public class MyApplication extends DrivitApplication {
     public void onCreate() {
         super.onCreate();
         /*Uncomment to enable debug mode*/
-        DrivitSession drivitSession = DrivitSession.getInstance();
-        drivitSession.enableDebug();
+        /*DrivitSession drivitSession = DrivitSession.getInstance();
+        drivitSession.enableDebug();*/
     }
 
     @Override
