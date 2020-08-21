@@ -101,37 +101,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onPostExecute(Integer result) {
 
-            if (result == Constants.NO_ERROR) {
-                if (locs != null) {
-                    RoadSnapResult snapResult = mTrip.getSnappedLocations();
-                    for (LocationInfo loc : snapResult.snappedArray) {
-                        includeLocation(new LatLng(loc.la, loc.lo), bounds);
-                        //includeLocation(loc,bounds);
-                    }
-                }
-
-                if (origin != null) includeLocation(new LatLng(origin.la, origin.lo), bounds);
-                if (destination != null)
-                    includeLocation(new LatLng(destination.la, destination.lo), bounds);
-
-                //We have to confirm the view is laid out
-                View container = findViewById(R.id.mapContainer);
-                if (container.getHeight() != 0) {
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50));
-                } else {
-                    ViewTreeObserver obs = container.getViewTreeObserver();
-                    obs.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                        @Override
-                        public boolean onPreDraw() {
-                            container.getViewTreeObserver().removeOnPreDrawListener(this);
-                            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50));
-                            return false;
+            /*NO_ERROR if the trip locations were snapped successfully. If the snap fails for some reason
+             * (e.g. invalid google API_KEY) getSnappedLocations() falls back to the raw collected locations
+             * and lets you know stating WARNING_LOCATIONS_ARE_NOT_SNAPPED*/
+            switch (result) {
+                case Constants.NO_ERROR:
+                case Constants.WARNING_LOCATIONS_ARE_NOT_SNAPPED:
+                    if (locs != null) {
+                        RoadSnapResult snapResult = mTrip.getSnappedLocations();
+                        for (LocationInfo loc : snapResult.snappedArray) {
+                            includeLocation(new LatLng(loc.la, loc.lo), bounds);
+                            //includeLocation(loc,bounds);
                         }
-                    });
-                }
-            } else {
-                Toast.makeText(MapsActivity.this, "Error snapping locations, error: " + result, Toast.LENGTH_LONG).show();
+                    }
+
+                    if (origin != null) includeLocation(new LatLng(origin.la, origin.lo), bounds);
+                    if (destination != null)
+                        includeLocation(new LatLng(destination.la, destination.lo), bounds);
+
+                    //We have to confirm the view is laid out
+                    View container = findViewById(R.id.mapContainer);
+                    if (container.getHeight() != 0) {
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50));
+                    } else {
+                        ViewTreeObserver obs = container.getViewTreeObserver();
+                        obs.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                            @Override
+                            public boolean onPreDraw() {
+                                container.getViewTreeObserver().removeOnPreDrawListener(this);
+                                mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50));
+                                return false;
+                            }
+                        });
+                    }
+                    break;
+
+                default:
+                    Toast.makeText(MapsActivity.this, "Error snapping locations, error: " + result, Toast.LENGTH_LONG).show();
             }
+
         }
     }
 
