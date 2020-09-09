@@ -1,4 +1,4 @@
-# AndroidSDK-Sample
+# Android SDK Sample
 
 This is a sample project to demonstrate the Drivit Android SDK integration. This document also outlines the key steps to integrate Drivit SDK into your application and put it to work.
 

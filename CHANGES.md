@@ -2,6 +2,9 @@
 
 In this section you can find what has changed from version to version
 
+## 6.0.3
+* Minor bug fixes and internal improvements
+
 ## 6.0.0
 * The following methods, which were already deprecated in the past, were removed from the SDK and
 can be safely removed in your app:
