@@ -2,6 +2,9 @@
 
 In this section you can find what has changed from version to version
 
+## 6.0.7
+* Corrects the string in the default standby notification
+
 ## 6.0.6
 * Minor bug fixes and internal improvements
 
