@@ -95,9 +95,9 @@ public class MyApplication extends DrivitApplication {
 ```
 If you don't set any notifications, the SDK will use the default ones.
 ### 4. Login/signup your user into the SDK
-You have to login the user into the SDK before it starts recording trips. 
+You have to signup/login the user into the SDK before it starts recording trips. 
 To do so, create an instance of the ```DrivitLoginSignupOperation``` object and 
-provide it with the info of your user:
+provide it with the info of your user. This is how you would login:
 
 ```java
 DrivitLoginSignupOperation login = new DrivitLoginSignupOperation(context);
@@ -119,8 +119,15 @@ login.doLogin(context, encryptedUserId, new LoginListener() {
 });
 ```
 
+### 5. Add a vehicle to the user
+All users need to have an associated vehicle to have trips. You need to provide this vehicle to the
+SDK so that trips are recorded:
+```java
+DrivitCloud.getInstance(context).addUserVehicle(vehicle, {...})
+```
+
 And that is it! Safe trips!
 
 **The Drivit Team**
 
-<br/><br/>P.S. You can see the complete reference documentation [here](https://javadoc.jitpack.io/com/github/drivitapp/android-core/6.0.0/javadoc/reference/packages.html)
+<br/><br/>P.S. You can see the complete reference documentation [here](https://javadoc.jitpack.io/com/github/drivitapp/android-core/6.0.7/javadoc/reference/packages.html)
