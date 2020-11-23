@@ -123,4 +123,4 @@ And that is it! Safe trips!
 
 **The Drivit Team**
 
-<br/><br/>P.S. You can see the complete reference documentation [here](https://javadoc.jitpack.io/com/github/drivitapp/android-core/6.0.0/javadoc/reference/packages.html)
+<br/><br/>P.S. You can see the complete reference documentation [here](https://javadoc.jitpack.io/com/github/drivitapp/android-core/6.1.0/javadoc/reference/packages.html)
