@@ -2,6 +2,11 @@
 
 In this section you can find what has changed from version to version
 
+## 6.1.0
+* Improvements in the trip recording layer
+* Improvements in the network layer
+* Other improvements and bug fixes
+
 ## 6.0.7
 * Corrects the string in the default standby notification
 
