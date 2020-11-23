@@ -1,4 +1,4 @@
-# AndroidSDK-Sample
+# Android SDK Sample
 
 This is a sample project to demonstrate the Drivit Android SDK integration. This document also outlines the key steps to integrate Drivit SDK into your application and put it to work.
 
@@ -95,9 +95,9 @@ public class MyApplication extends DrivitApplication {
 ```
 If you don't set any notifications, the SDK will use the default ones.
 ### 4. Login/signup your user into the SDK
-You have to login the user into the SDK before it starts recording trips. 
+You have to signup/login the user into the SDK before it starts recording trips. 
 To do so, create an instance of the ```DrivitLoginSignupOperation``` object and 
-provide it with the info of your user:
+provide it with the info of your user. This is how you would login:
 
 ```java
 DrivitLoginSignupOperation login = new DrivitLoginSignupOperation(context);
@@ -117,6 +117,13 @@ login.doLogin(context, encryptedUserId, new LoginListener() {
           
      }
 });
+```
+
+### 5. Add a vehicle to the user
+All users need to have an associated vehicle to have trips. You need to provide this vehicle to the
+SDK so that trips are recorded:
+```java
+DrivitCloud.getInstance(context).addUserVehicle(vehicle, {...})
 ```
 
 And that is it! Safe trips!
