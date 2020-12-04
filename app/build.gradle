@@ -35,7 +35,7 @@ android {
 
 dependencies {
     //The Drivit SDK
-    implementation 'com.github.drivitapp:android-core:6.1.0'
+    implementation 'com.github.drivitapp:android-core:6.1.1'
 
     //UI libraries
     implementation 'com.google.android.libraries.maps:maps:3.1.0-beta'
