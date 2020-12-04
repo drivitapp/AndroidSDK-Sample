@@ -160,20 +160,10 @@ public class MainActivity extends DrivitStatusActivity {
     private void sendLogs() {
         DrivitCloud drivitCloud = DrivitCloud.getInstance(MainActivity.this);
         if (drivitCloud != null) {
-            drivitCloud.forceSyncLogs(new DrivitCloud.OperationListenerGeneric<Double>() {
+            drivitCloud.forceSyncAll(new DrivitCloud.OperationListener() {
                 @Override
-                public void onCompleted() {
-                    Toast.makeText(MainActivity.this, "Logs sent successfully", Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void onError(int error) {
-                    Toast.makeText(MainActivity.this, "Error while sending logs, cause: " + error, Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void onProgress(Double value) {
-
+                public void onCompleted(boolean success, int i) {
+                    Toast.makeText(MainActivity.this, "Completed, result: " + success, Toast.LENGTH_LONG).show();
                 }
             });
         }
